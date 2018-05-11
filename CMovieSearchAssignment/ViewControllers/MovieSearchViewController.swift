@@ -10,14 +10,23 @@ import UIKit
 
 class MovieSearchViewController: UIViewController {
 
+    @IBOutlet weak var searchBarMovies: UISearchBar!
+    @IBOutlet weak var tableViewMovies: UITableView!
+    
+    var movieTableViewDatasource: MovieTableViewDatasource!
+    var recentSearchTableViewDatasource: RecentSearchesTableViewDatasource!
+    
+    var movies: [Movie] = []
+    var recentSearches: [SearchItem] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
     }
 }
 
