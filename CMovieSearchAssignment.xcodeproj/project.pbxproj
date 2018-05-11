@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9342BDA120A5E27500A35789 /* AppSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9342BDA020A5E27500A35789 /* AppSearchBar.swift */; };
 		934D9A1A20A59FCA0042EFB0 /* MovieSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934D9A1920A59FCA0042EFB0 /* MovieSearchViewController.swift */; };
 		934D9A1D20A59FFA0042EFB0 /* MovieTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 934D9A1C20A59FFA0042EFB0 /* MovieTableViewCell.xib */; };
 		934D9A2220A5A05B0042EFB0 /* MovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934D9A2120A5A05B0042EFB0 /* MovieTableViewCell.swift */; };
@@ -33,6 +34,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9342BDA020A5E27500A35789 /* AppSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSearchBar.swift; sourceTree = "<group>"; };
 		934D9A1920A59FCA0042EFB0 /* MovieSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieSearchViewController.swift; sourceTree = "<group>"; };
 		934D9A1C20A59FFA0042EFB0 /* MovieTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MovieTableViewCell.xib; sourceTree = "<group>"; };
 		934D9A2120A5A05B0042EFB0 /* MovieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 			children = (
 				934D9A1C20A59FFA0042EFB0 /* MovieTableViewCell.xib */,
 				934D9A2120A5A05B0042EFB0 /* MovieTableViewCell.swift */,
+				9342BDA020A5E27500A35789 /* AppSearchBar.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -277,6 +280,7 @@
 			files = (
 				934D9A2E20A5A3BF0042EFB0 /* SearchItem.swift in Sources */,
 				93DB3C2620A553D700165793 /* AppDelegate.swift in Sources */,
+				9342BDA120A5E27500A35789 /* AppSearchBar.swift in Sources */,
 				934D9A1A20A59FCA0042EFB0 /* MovieSearchViewController.swift in Sources */,
 				934D9A2220A5A05B0042EFB0 /* MovieTableViewCell.swift in Sources */,
 				934D9A2520A5A1890042EFB0 /* MovieTableViewDatasource.swift in Sources */,

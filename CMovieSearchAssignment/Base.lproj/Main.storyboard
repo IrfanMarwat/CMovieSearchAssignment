@@ -18,28 +18,37 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="vPS-2M-adp">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="vPS-2M-adp">
+                                <rect key="frame" x="0.0" y="28" width="375" height="639"/>
                                 <subviews>
-                                    <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="b5b-EG-T3h">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search for movie" translatesAutoresizingMaskIntoConstraints="NO" id="b5b-EG-T3h" customClass="AppSearchBar" customModule="CMovieSearchAssignment" customModuleProvider="target">
+                                        <rect key="frame" x="8" y="0.0" width="359" height="44"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="0Mr-UR-zeS"/>
                                         </constraints>
+                                        <color key="barTintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="BYZ-38-t0r" id="kV6-kq-K2p"/>
+                                        </connections>
                                     </searchBar>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HV4-wG-6Kx">
-                                        <rect key="frame" x="0.0" y="44" width="375" height="603"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <rect key="frame" x="0.0" y="52" width="375" height="587"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableView>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="b5b-EG-T3h" firstAttribute="leading" secondItem="vPS-2M-adp" secondAttribute="leading" constant="8" id="4af-c9-psP"/>
+                                    <constraint firstAttribute="trailing" secondItem="b5b-EG-T3h" secondAttribute="trailing" constant="8" id="Snk-AI-Jgf"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="vPS-2M-adp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="NKo-Gq-spI"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="vPS-2M-adp" secondAttribute="bottom" id="i73-Ky-hVp"/>
-                            <constraint firstItem="vPS-2M-adp" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="qoe-3R-Ms3"/>
+                            <constraint firstItem="vPS-2M-adp" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="qoe-3R-Ms3"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="vPS-2M-adp" secondAttribute="trailing" id="rXn-we-LUB"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>

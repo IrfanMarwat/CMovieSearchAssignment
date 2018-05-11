@@ -9,9 +9,18 @@
 import UIKit
 
 class RecentSearchesTableViewDatasource: NSObject {
+    var datasource: [SearchItem] = []
     
+    init(_ recentSearches: [SearchItem]? = nil) {
+        super.init()
+        
+        if let recentSearches = recentSearches {
+            datasource = recentSearches
+        }
+    }
 }
 
+// MARK: - <#UITableViewDataSource#>
 extension RecentSearchesTableViewDatasource: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 0
@@ -23,6 +32,7 @@ extension RecentSearchesTableViewDatasource: UITableViewDataSource {
     
 }
 
+// MARK: - <#UITableViewDelegate#>
 extension RecentSearchesTableViewDatasource: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         

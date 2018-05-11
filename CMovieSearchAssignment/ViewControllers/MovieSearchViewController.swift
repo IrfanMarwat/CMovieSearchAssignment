@@ -10,7 +10,7 @@ import UIKit
 
 class MovieSearchViewController: UIViewController {
 
-    @IBOutlet weak var searchBarMovies: UISearchBar!
+    @IBOutlet weak var searchBarMovies: AppSearchBar!
     @IBOutlet weak var tableViewMovies: UITableView!
     
     var movieTableViewDatasource: MovieTableViewDatasource!
@@ -22,11 +22,34 @@ class MovieSearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        movieTableViewDatasource = MovieTableViewDatasource()
+        recentSearchTableViewDatasource = RecentSearchesTableViewDatasource()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
+    }
+}
+
+// MARK: - <#UISearchBarDelegate#>
+extension MovieSearchViewController: UISearchBarDelegate {
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBarMovies.cancelShown()
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBarMovies.cancelHidden()
+        searchBarMovies.resignFirstResponder()
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchBarMovies.cancelHidden()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+       searchBarMovies.resignFirstResponder()
     }
 }
 
