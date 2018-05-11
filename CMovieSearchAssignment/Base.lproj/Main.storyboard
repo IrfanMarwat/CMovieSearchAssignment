@@ -45,7 +45,9 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="searchBarMovies" destination="b5b-EG-T3h" id="70A-KM-hcp"/>
                         <outlet property="searchDisplayController" destination="8JJ-1O-caN" id="jBy-qo-WHF"/>
+                        <outlet property="tableViewMovies" destination="HV4-wG-6Kx" id="cl1-4B-iuJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
