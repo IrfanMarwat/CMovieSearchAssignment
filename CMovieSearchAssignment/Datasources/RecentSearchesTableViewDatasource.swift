@@ -23,11 +23,18 @@ class RecentSearchesTableViewDatasource: NSObject {
 // MARK: - <#UITableViewDataSource#>
 extension RecentSearchesTableViewDatasource: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return datasource.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return tableView.dequeueReusableCell(withIdentifier: "movieCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "recentSearchCell")
+        cell?.accessoryType = .disclosureIndicator
+        cell?.backgroundColor = UIColor.groupTableViewBackground
+        let item = datasource[indexPath.row]
+        cell?.textLabel?.textColor = .black
+        cell?.textLabel?.text = item.searchText
+        
+        return cell!
     }
     
 }

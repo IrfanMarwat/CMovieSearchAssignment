@@ -31,7 +31,11 @@ extension MovieTableViewDatasource: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return tableView.dequeueReusableCell(withIdentifier: "movieCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "movieCell", for: indexPath) as! MovieTableViewCell
+        let movie = datasource[indexPath.row]
+        cell.configureWith(movie)
+        
+        return cell
     }
 
 }

@@ -22,4 +22,10 @@ class MovieTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
+    
+    func configureWith(_ movie: Movie) {
+        labelMovieName.text = movie.name
+        labelMovieReleaseDate.text = movie.releaseDate
+        labelMovieReview.text = movie.review
+    }
 }

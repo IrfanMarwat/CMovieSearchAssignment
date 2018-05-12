@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,43 +14,58 @@
         <!--Movie Search View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="BYZ-38-t0r" customClass="MovieSearchViewController" customModule="CMovieSearchAssignment" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MovieSearchViewController" automaticallyAdjustsScrollViewInsets="NO" id="BYZ-38-t0r" customClass="MovieSearchViewController" customModule="CMovieSearchAssignment" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="vPS-2M-adp">
-                                <rect key="frame" x="0.0" y="28" width="375" height="639"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xgg-IZ-lhn">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
-                                    <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search for movie" translatesAutoresizingMaskIntoConstraints="NO" id="b5b-EG-T3h" customClass="AppSearchBar" customModule="CMovieSearchAssignment" customModuleProvider="target">
-                                        <rect key="frame" x="8" y="0.0" width="359" height="44"/>
-                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="VWY-dc-yNO">
+                                        <rect key="frame" x="0.0" y="8" width="375" height="639"/>
+                                        <subviews>
+                                            <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search for movie" translatesAutoresizingMaskIntoConstraints="NO" id="b5b-EG-T3h" customClass="AppSearchBar" customModule="CMovieSearchAssignment" customModuleProvider="target">
+                                                <rect key="frame" x="8" y="0.0" width="359" height="44"/>
+                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="44" id="0Mr-UR-zeS"/>
+                                                </constraints>
+                                                <color key="barTintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="BYZ-38-t0r" id="kV6-kq-K2p"/>
+                                                </connections>
+                                            </searchBar>
+                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HV4-wG-6Kx">
+                                                <rect key="frame" x="8" y="52" width="359" height="587"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <sections/>
+                                            </tableView>
+                                        </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="44" id="0Mr-UR-zeS"/>
+                                            <constraint firstAttribute="trailing" secondItem="b5b-EG-T3h" secondAttribute="trailing" constant="8" id="4Jv-Z5-6pS"/>
+                                            <constraint firstItem="b5b-EG-T3h" firstAttribute="leading" secondItem="VWY-dc-yNO" secondAttribute="leading" constant="8" id="6Ho-kb-QD3"/>
+                                            <constraint firstItem="HV4-wG-6Kx" firstAttribute="leading" secondItem="VWY-dc-yNO" secondAttribute="leading" constant="8" id="kxl-Bo-hmG"/>
+                                            <constraint firstAttribute="trailing" secondItem="HV4-wG-6Kx" secondAttribute="trailing" constant="8" id="sNk-3B-kHX"/>
                                         </constraints>
-                                        <color key="barTintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                        <connections>
-                                            <outlet property="delegate" destination="BYZ-38-t0r" id="kV6-kq-K2p"/>
-                                        </connections>
-                                    </searchBar>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HV4-wG-6Kx">
-                                        <rect key="frame" x="0.0" y="52" width="375" height="587"/>
-                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </tableView>
+                                    </stackView>
                                 </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="b5b-EG-T3h" firstAttribute="leading" secondItem="vPS-2M-adp" secondAttribute="leading" constant="8" id="4af-c9-psP"/>
-                                    <constraint firstAttribute="trailing" secondItem="b5b-EG-T3h" secondAttribute="trailing" constant="8" id="Snk-AI-Jgf"/>
+                                    <constraint firstAttribute="trailing" secondItem="VWY-dc-yNO" secondAttribute="trailing" id="fIT-KV-qul"/>
+                                    <constraint firstItem="VWY-dc-yNO" firstAttribute="top" secondItem="Xgg-IZ-lhn" secondAttribute="top" constant="8" id="kei-4n-Tn0"/>
+                                    <constraint firstItem="VWY-dc-yNO" firstAttribute="leading" secondItem="Xgg-IZ-lhn" secondAttribute="leading" id="ngi-WT-sSB"/>
+                                    <constraint firstAttribute="bottom" secondItem="VWY-dc-yNO" secondAttribute="bottom" id="y4l-Zs-1dO"/>
                                 </constraints>
-                            </stackView>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="vPS-2M-adp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="NKo-Gq-spI"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="vPS-2M-adp" secondAttribute="bottom" id="i73-Ky-hVp"/>
-                            <constraint firstItem="vPS-2M-adp" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="qoe-3R-Ms3"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="vPS-2M-adp" secondAttribute="trailing" id="rXn-we-LUB"/>
+                            <constraint firstItem="Xgg-IZ-lhn" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="A0c-uh-8NL"/>
+                            <constraint firstItem="Xgg-IZ-lhn" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="EIe-Ov-0qo"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Xgg-IZ-lhn" secondAttribute="bottom" id="aKM-fo-fcc"/>
+                            <constraint firstItem="Xgg-IZ-lhn" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="faQ-af-JtA"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>

@@ -22,14 +22,25 @@ class MovieSearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableViewMovies.tableFooterView = UIView(frame: .zero)
         
-        movieTableViewDatasource = MovieTableViewDatasource()
-        recentSearchTableViewDatasource = RecentSearchesTableViewDatasource()
+        let movieCellNib = MovieTableViewCell.nib
+        tableViewMovies.register(movieCellNib, forCellReuseIdentifier: "movieCell")
+        tableViewMovies.register(UITableViewCell.self, forCellReuseIdentifier: "recentSearchCell")
+        
+        let recentSearches = [SearchItem(searchText: "Black Panther", searchedDate: Date()), SearchItem(searchText: "Gotham", searchedDate: Date()), SearchItem(searchText: "Black Panther", searchedDate: Date())]
+        
+        let allMovies = [Movie(name: "Black Panther", releaseDate: "20-Oct-2017", review: "Not good jsut bad", imagePath: "https://image.tmdb.org/t/p/w500/kqjL17yufvn9OVLyXYpvtyrFfak.jpg"), Movie(name: "Black Panther", releaseDate: "19-Oct-2017", review: "Not good", imagePath: "https://image.tmdb.org/t/p/w500/kqjL17yufvn9OVLyXYpvtyrFfak.jpg"), Movie(name: "Black Panther", releaseDate: "21-Oct-2017", review: "Not goodlksdj flds jfdls kjfdls kjf dslkjf ldsk jflkds jflksd jfklds jflkds jflkds jflkds jflds kjfl dskjf lkdsj flkds jfldsjf", imagePath: "https://image.tmdb.org/t/p/w500/kqjL17yufvn9OVLyXYpvtyrFfak.jpg")]
+        
+        movieTableViewDatasource = MovieTableViewDatasource(allMovies)
+        recentSearchTableViewDatasource = RecentSearchesTableViewDatasource(recentSearches)
+        
+        tableViewMovies.dataSource = movieTableViewDatasource
+        tableViewMovies.delegate = movieTableViewDatasource
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        
     }
 }
 
@@ -37,6 +48,8 @@ class MovieSearchViewController: UIViewController {
 extension MovieSearchViewController: UISearchBarDelegate {
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         searchBarMovies.cancelShown()
+        tableViewMovies.dataSource = recentSearchTableViewDatasource
+        tableViewMovies.reloadData()
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
