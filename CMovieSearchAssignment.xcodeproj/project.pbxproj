@@ -16,6 +16,13 @@
 		9342BDA820A5FC4400A35789 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934D9A2720A5A2430042EFB0 /* Movie.swift */; };
 		9342BDA920A5FC4700A35789 /* SearchItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934D9A2D20A5A3BF0042EFB0 /* SearchItem.swift */; };
 		9342BDAB20A61ED000A35789 /* UIView+Addition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9342BDAA20A61ED000A35789 /* UIView+Addition.swift */; };
+		93462E9820A6A8D3006F7A3A /* BaseRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93462E9720A6A8D3006F7A3A /* BaseRouter.swift */; };
+		93462E9A20A6AAFB006F7A3A /* MovieRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93462E9920A6AAFB006F7A3A /* MovieRouter.swift */; };
+		93462E9D20A6B007006F7A3A /* NetworkApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93462E9C20A6B007006F7A3A /* NetworkApiManager.swift */; };
+		93462E9F20A6B01A006F7A3A /* NetworkImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93462E9E20A6B01A006F7A3A /* NetworkImageDownloader.swift */; };
+		93462EA120A6CCE7006F7A3A /* MovieSearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93462EA020A6CCE7006F7A3A /* MovieSearchResponse.swift */; };
+		93462EA320A6D47B006F7A3A /* UIViewController+Addition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93462EA220A6D47B006F7A3A /* UIViewController+Addition.swift */; };
+		93462EA520A6E2E1006F7A3A /* UIImageView+ImageDownload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93462EA420A6E2E1006F7A3A /* UIImageView+ImageDownload.swift */; };
 		934D9A1A20A59FCA0042EFB0 /* MovieSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934D9A1920A59FCA0042EFB0 /* MovieSearchViewController.swift */; };
 		934D9A1D20A59FFA0042EFB0 /* MovieTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 934D9A1C20A59FFA0042EFB0 /* MovieTableViewCell.xib */; };
 		934D9A2220A5A05B0042EFB0 /* MovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934D9A2120A5A05B0042EFB0 /* MovieTableViewCell.swift */; };
@@ -52,6 +59,13 @@
 		9342BDAA20A61ED000A35789 /* UIView+Addition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Addition.swift"; sourceTree = "<group>"; };
 		93462E9220A69E49006F7A3A /* AlamofireImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireImage.framework; path = Carthage/Build/iOS/AlamofireImage.framework; sourceTree = "<group>"; };
 		93462E9320A69E49006F7A3A /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		93462E9720A6A8D3006F7A3A /* BaseRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRouter.swift; sourceTree = "<group>"; };
+		93462E9920A6AAFB006F7A3A /* MovieRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRouter.swift; sourceTree = "<group>"; };
+		93462E9C20A6B007006F7A3A /* NetworkApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkApiManager.swift; sourceTree = "<group>"; };
+		93462E9E20A6B01A006F7A3A /* NetworkImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkImageDownloader.swift; sourceTree = "<group>"; };
+		93462EA020A6CCE7006F7A3A /* MovieSearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSearchResponse.swift; sourceTree = "<group>"; };
+		93462EA220A6D47B006F7A3A /* UIViewController+Addition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Addition.swift"; sourceTree = "<group>"; };
+		93462EA420A6E2E1006F7A3A /* UIImageView+ImageDownload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+ImageDownload.swift"; sourceTree = "<group>"; };
 		934D9A1920A59FCA0042EFB0 /* MovieSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieSearchViewController.swift; sourceTree = "<group>"; };
 		934D9A1C20A59FFA0042EFB0 /* MovieTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MovieTableViewCell.xib; sourceTree = "<group>"; };
 		934D9A2120A5A05B0042EFB0 /* MovieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
@@ -116,6 +130,25 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		93462E9620A6A882006F7A3A /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				93462E9720A6A8D3006F7A3A /* BaseRouter.swift */,
+				93462E9920A6AAFB006F7A3A /* MovieRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		93462E9B20A6AFE4006F7A3A /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				93462E9C20A6B007006F7A3A /* NetworkApiManager.swift */,
+				93462E9E20A6B01A006F7A3A /* NetworkImageDownloader.swift */,
+				93462EA020A6CCE7006F7A3A /* MovieSearchResponse.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		934D9A1820A59F990042EFB0 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -152,6 +185,8 @@
 			isa = PBXGroup;
 			children = (
 				9342BDAA20A61ED000A35789 /* UIView+Addition.swift */,
+				93462EA220A6D47B006F7A3A /* UIViewController+Addition.swift */,
+				93462EA420A6E2E1006F7A3A /* UIImageView+ImageDownload.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -200,6 +235,8 @@
 				93DB3C2520A553D700165793 /* AppDelegate.swift */,
 				934D9A1820A59F990042EFB0 /* ViewControllers */,
 				934D9A1B20A59FD60042EFB0 /* Views */,
+				93462E9B20A6AFE4006F7A3A /* Network */,
+				93462E9620A6A882006F7A3A /* Router */,
 				934D9A2620A5A2310042EFB0 /* Models */,
 				934D9A1E20A5A0050042EFB0 /* Protocols */,
 				934D9A2320A5A1580042EFB0 /* Datasources */,
@@ -397,11 +434,18 @@
 				93DB3C2620A553D700165793 /* AppDelegate.swift in Sources */,
 				9342BDA120A5E27500A35789 /* AppSearchBar.swift in Sources */,
 				934D9A1A20A59FCA0042EFB0 /* MovieSearchViewController.swift in Sources */,
+				93462E9A20A6AAFB006F7A3A /* MovieRouter.swift in Sources */,
 				934D9A2220A5A05B0042EFB0 /* MovieTableViewCell.swift in Sources */,
 				934D9A2520A5A1890042EFB0 /* MovieTableViewDatasource.swift in Sources */,
+				93462E9820A6A8D3006F7A3A /* BaseRouter.swift in Sources */,
 				934D9A2820A5A2430042EFB0 /* Movie.swift in Sources */,
 				934D9A2C20A5A3170042EFB0 /* RecentSearchesTableViewDatasource.swift in Sources */,
 				934D9A2A20A5A29E0042EFB0 /* Constants.swift in Sources */,
+				93462EA120A6CCE7006F7A3A /* MovieSearchResponse.swift in Sources */,
+				93462EA520A6E2E1006F7A3A /* UIImageView+ImageDownload.swift in Sources */,
+				93462E9D20A6B007006F7A3A /* NetworkApiManager.swift in Sources */,
+				93462EA320A6D47B006F7A3A /* UIViewController+Addition.swift in Sources */,
+				93462E9F20A6B01A006F7A3A /* NetworkImageDownloader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -23,4 +23,22 @@ extension UIView {
             return nil
         }
     }
+    
+    func showActivityIndicatory() -> UIActivityIndicatorView {
+        let actInd: UIActivityIndicatorView = UIActivityIndicatorView()
+        actInd.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
+        actInd.center = center
+        actInd.hidesWhenStopped = true
+        actInd.activityIndicatorViewStyle =
+            UIActivityIndicatorViewStyle.white
+        addSubview(actInd)
+        actInd.startAnimating()
+        
+        return actInd
+    }
+    
+    func hideActivityIndicator() {
+        let activityIndictor = self as? UIActivityIndicatorView
+        activityIndictor?.stopAnimating()
+    }
 }

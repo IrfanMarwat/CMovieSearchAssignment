@@ -8,18 +8,29 @@
 
 import UIKit
 
+protocol MovieVcDelegate: class {
+    func loadMoreItems()
+    var shouldDownloadMore: Bool {get}
+}
+
 class MovieTableViewDatasource: NSObject {
     var datasource: [Movie] = []
+    weak var delegateToMovieVc: MovieVcDelegate? = nil
     
-    init(_ movies: [Movie]? = nil) {
+    init(_ movies: [Movie]? = nil, delegate: MovieVcDelegate) {
         super.init()
         
         if let movies = movies {
             datasource = movies
         }
+        delegateToMovieVc = delegate
     }
     
     func update(_ newMovies: [Movie]) {
+        datasource = newMovies
+    }
+    
+    func addNextPageMovies(_ newMovies: [Movie]) {
         datasource.append(contentsOf: newMovies)
     }
 }
@@ -37,12 +48,16 @@ extension MovieTableViewDatasource: UITableViewDataSource {
         
         return cell
     }
-
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if delegateToMovieVc?.shouldDownloadMore ?? false {
+            delegateToMovieVc?.loadMoreItems()
+        }
+    }
 }
 
 // MARK: - <#UITableViewDelegate#>
 extension MovieTableViewDatasource: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
     }
 }

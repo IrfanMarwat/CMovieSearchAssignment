@@ -24,8 +24,12 @@ class MovieTableViewCell: UITableViewCell {
     }
     
     func configureWith(_ movie: Movie) {
-        labelMovieName.text = movie.name
+        if let imageName = movie.posterPath?.replacingOccurrences(of: "'\'", with: "") {
+            let imageFullPath = Constants.BASE_URL_IMAGE + Constants.thumbnailSize + imageName
+            imageViewMovie.downloadImage(imageFullPath) { (success) in}
+        }
+        labelMovieName.text = movie.title
         labelMovieReleaseDate.text = movie.releaseDate
-        labelMovieReview.text = movie.review
+        labelMovieReview.text = movie.overview
     }
 }

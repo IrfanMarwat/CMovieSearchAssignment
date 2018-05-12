@@ -12,35 +12,69 @@ class MovieSearchViewController: UIViewController {
 
     @IBOutlet weak var searchBarMovies: AppSearchBar!
     @IBOutlet weak var tableViewMovies: UITableView!
+    var nextResponseCompleted: Bool = false
     
     var movieTableViewDatasource: MovieTableViewDatasource!
     var recentSearchTableViewDatasource: RecentSearchesTableViewDatasource!
     
-    var movies: [Movie] = []
+    var moviesResponse: MovieSearchResponse?
+    
     var recentSearches: [SearchItem] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableViewMovies.tableFooterView = UIView(frame: .zero)
+        searchBarMovies.becomeFirstResponder()
         
         let movieCellNib = MovieTableViewCell.nib
         tableViewMovies.register(movieCellNib, forCellReuseIdentifier: "movieCell")
         tableViewMovies.register(UITableViewCell.self, forCellReuseIdentifier: "recentSearchCell")
         
-        let recentSearches = [SearchItem(searchText: "Black Panther", searchedDate: Date()), SearchItem(searchText: "Gotham", searchedDate: Date()), SearchItem(searchText: "Black Panther", searchedDate: Date())]
-        
-        let allMovies = [Movie(name: "Black Panther", releaseDate: "20-Oct-2017", review: "Not good jsut bad", imagePath: "https://image.tmdb.org/t/p/w500/kqjL17yufvn9OVLyXYpvtyrFfak.jpg"), Movie(name: "Black Panther", releaseDate: "19-Oct-2017", review: "Not good", imagePath: "https://image.tmdb.org/t/p/w500/kqjL17yufvn9OVLyXYpvtyrFfak.jpg"), Movie(name: "Black Panther", releaseDate: "21-Oct-2017", review: "Not goodlksdj flds jfdls kjfdls kjf dslkjf ldsk jflkds jflksd jfklds jflkds jflkds jflkds jflds kjfl dskjf lkdsj flkds jfldsjf", imagePath: "https://image.tmdb.org/t/p/w500/kqjL17yufvn9OVLyXYpvtyrFfak.jpg")]
-        
-        movieTableViewDatasource = MovieTableViewDatasource(allMovies)
-        recentSearchTableViewDatasource = RecentSearchesTableViewDatasource(recentSearches)
-        
-        tableViewMovies.dataSource = movieTableViewDatasource
-        tableViewMovies.delegate = movieTableViewDatasource
+        movieTableViewDatasource = MovieTableViewDatasource(delegate: self)
+        recentSearchTableViewDatasource = RecentSearchesTableViewDatasource()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func loadItems(_ searchText: String, pageToLoad: Int = 1) {
+        MovieSearchResponse.searchWith(searchText, pageNumber: pageToLoad) { (error, response) in
+            DispatchQueue.main.async {
+                guard error == nil else {
+                    //                    self.showAlertWithTitle(title: nil, message: error!.localizedDescription, okButtonTitle: "OK", cancelButtonTitle: nil, response: nil)
+                    return
+                }
+                
+                self.moviesResponse = response
+                if pageToLoad == 1 {
+                    self.movieTableViewDatasource.update(response?.results ?? [])
+                } else {
+                    self.movieTableViewDatasource.addNextPageMovies(response?.results ?? [])
+                }
+                self.tableViewMovies.dataSource = self.movieTableViewDatasource
+                self.tableViewMovies.delegate = self.movieTableViewDatasource
+                self.tableViewMovies.reloadData()
+                self.nextResponseCompleted = true
+            }
+        }
+    }
+}
+
+extension MovieSearchViewController: MovieVcDelegate {
+    var shouldDownloadMore: Bool {
+        let bottomReached = tableViewMovies.contentOffset.y >= (tableViewMovies.contentSize.height - tableViewMovies.frame.size.height)
+        
+        return bottomReached && nextResponseCompleted
+    }
+    
+    
+    func loadMoreItems() {
+        nextResponseCompleted = false
+        if let nextPage = moviesResponse?.nextPage {
+            loadItems(searchBarMovies.text!, pageToLoad: nextPage)
+        }
     }
 }
 
@@ -52,9 +86,14 @@ extension MovieSearchViewController: UISearchBarDelegate {
         tableViewMovies.reloadData()
     }
     
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        loadItems(searchText)
+    }
+    
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBarMovies.cancelHidden()
         searchBarMovies.resignFirstResponder()
+        
     }
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
