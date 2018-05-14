@@ -51,6 +51,13 @@ struct Constants {
     
     static let thumbnailSize = "w185"
     static let orignalImage = "original"
+    static let ThrottlerTime = 0.4
+    
+    static let maxRecentItemCount = 10
+    
+    struct SegueIdentifiers {
+        static let movieDetailSegue = "segueToDetail"
+    }
     
     
     struct Keys {

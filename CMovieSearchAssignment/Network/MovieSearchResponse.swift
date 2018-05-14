@@ -12,7 +12,7 @@ struct MovieSearchResponse: Decodable {
     var page: Int = 0
     var totalResults: Int?
     var totalPages: Int = 0
-    var results: [Movie]?
+    var movies: [Movie]?
     
     private var hasNextPage: Bool {
         return totalPages > page
@@ -26,7 +26,7 @@ struct MovieSearchResponse: Decodable {
     }
     
     private enum CodingKeys: String, CodingKey {
-        case page = "page", totalResults = "total_results", totalPages = "total_pages", results = "results"
+        case page = "page", totalResults = "total_results", totalPages = "total_pages", movies = "results"
     }
     
     static func searchWith(_ searchText: String, pageNumber: Int = 1, completion: @escaping (_ error: Error?, _ reponse: MovieSearchResponse?)->()) {

@@ -13,7 +13,7 @@ class MovieTableViewCell: UITableViewCell {
     @IBOutlet weak var imageViewMovie: UIImageView!
     @IBOutlet weak var labelMovieName: UILabel!
     @IBOutlet weak var labelMovieReleaseDate: UILabel!
-    @IBOutlet weak var labelMovieReview: UITextView!
+    @IBOutlet weak var labelMovieReview: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,9 +24,14 @@ class MovieTableViewCell: UITableViewCell {
     }
     
     func configureWith(_ movie: Movie) {
-        if let imageName = movie.posterPath?.replacingOccurrences(of: "'\'", with: "") {
-            let imageFullPath = Constants.BASE_URL_IMAGE + Constants.thumbnailSize + imageName
-            imageViewMovie.downloadImage(imageFullPath) { (success) in}
+        if let image = movie.movieImage {
+            imageViewMovie.image = image
+        } else {
+            if let imageName = movie.posterPath?.replacingOccurrences(of: "'\'", with: "") {
+                let imageFullPath = Constants.BASE_URL_IMAGE + Constants.thumbnailSize + imageName
+                imageViewMovie.downloadImage(imageFullPath) { (success) in}
+            }
+
         }
         labelMovieName.text = movie.title
         labelMovieReleaseDate.text = movie.releaseDate

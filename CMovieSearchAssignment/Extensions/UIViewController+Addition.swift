@@ -47,4 +47,19 @@ extension UIViewController {
             self.present(alertVC, animated: true, completion: nil)
         }
     }
+    
+    func setCustomTitle(_ title: String)  {
+        
+        let titleLabel = UILabel()
+        titleLabel.font = UIFont(name: "RomainHeadline", size: 15.0)
+        titleLabel.textAlignment = .center
+        titleLabel.textColor = UIColor(red: 24.0/255.0, green: 24.0/255.0, blue: 24.0/255.0, alpha: 1.0)
+        titleLabel.text = title
+        
+        titleLabel.sizeToFit()
+        
+        self.navigationItem.titleView = titleLabel
+        
+        self.title = ""
+    }
 }

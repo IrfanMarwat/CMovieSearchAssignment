@@ -13,16 +13,19 @@ class MovieSearchViewController: UIViewController {
     @IBOutlet weak var searchBarMovies: AppSearchBar!
     @IBOutlet weak var tableViewMovies: UITableView!
     var nextResponseCompleted: Bool = false
+    var activityIndicator: UIActivityIndicatorView?
+    
+    let throttler = Throttler(seconds: Constants.ThrottlerTime)
+    var realmSearchStore: SearchItemDataStore!
+    var moviesResponse: MovieSearchResponse?
     
     var movieTableViewDatasource: MovieTableViewDatasource!
     var recentSearchTableViewDatasource: RecentSearchesTableViewDatasource!
     
-    var moviesResponse: MovieSearchResponse?
-    
-    var recentSearches: [SearchItem] = []
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        realmSearchStore = RealmSearchStore()
         
         tableViewMovies.tableFooterView = UIView(frame: .zero)
         searchBarMovies.becomeFirstResponder()
@@ -32,36 +35,60 @@ class MovieSearchViewController: UIViewController {
         tableViewMovies.register(UITableViewCell.self, forCellReuseIdentifier: "recentSearchCell")
         
         movieTableViewDatasource = MovieTableViewDatasource(delegate: self)
-        recentSearchTableViewDatasource = RecentSearchesTableViewDatasource()
+        recentSearchTableViewDatasource = RecentSearchesTableViewDatasource(realmSearchStore, delegate: self)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    func loadItems(_ searchText: String, pageToLoad: Int = 1) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == Constants.SegueIdentifiers.movieDetailSegue {
+            let destinationVc = segue.destination as! MovieDetailViewController
+            destinationVc.movie = sender as! Movie
+        }
+    }
+    
+    func loadItems(_ searchText: String, pageToLoad: Int = 1, completion: (()-> Void)? = nil ) {
         MovieSearchResponse.searchWith(searchText, pageNumber: pageToLoad) { (error, response) in
             DispatchQueue.main.async {
+                self.activityIndicator?.hideActivityIndicator()
+                self.activityIndicator = nil
+                
                 guard error == nil else {
-                    //                    self.showAlertWithTitle(title: nil, message: error!.localizedDescription, okButtonTitle: "OK", cancelButtonTitle: nil, response: nil)
                     return
                 }
                 
                 self.moviesResponse = response
                 if pageToLoad == 1 {
-                    self.movieTableViewDatasource.update(response?.results ?? [])
+                    self.movieTableViewDatasource.update(response?.movies ?? [])
                 } else {
-                    self.movieTableViewDatasource.addNextPageMovies(response?.results ?? [])
+                    self.movieTableViewDatasource.addNextPageMovies(response?.movies ?? [])
                 }
-                self.tableViewMovies.dataSource = self.movieTableViewDatasource
-                self.tableViewMovies.delegate = self.movieTableViewDatasource
-                self.tableViewMovies.reloadData()
+                
+                self.showMovieDatasource()
                 self.nextResponseCompleted = true
+                completion?()
             }
         }
     }
+    
+    func showMovieDatasource() {
+        tableViewMovies.dataSource = movieTableViewDatasource
+        tableViewMovies.delegate = movieTableViewDatasource
+        tableViewMovies.prefetchDataSource = movieTableViewDatasource
+        tableViewMovies.reloadData()
+    }
+    
+    func showRecentSearchDatasource() {
+        recentSearchTableViewDatasource.updatedStore(realmSearchStore)
+        tableViewMovies.dataSource = recentSearchTableViewDatasource
+        tableViewMovies.delegate = recentSearchTableViewDatasource
+        tableViewMovies.reloadData()
+    }
 }
 
+// MARK: - <#MovieVcDelegate#>
 extension MovieSearchViewController: MovieVcDelegate {
     var shouldDownloadMore: Bool {
         let bottomReached = tableViewMovies.contentOffset.y >= (tableViewMovies.contentSize.height - tableViewMovies.frame.size.height)
@@ -76,24 +103,51 @@ extension MovieSearchViewController: MovieVcDelegate {
             loadItems(searchBarMovies.text!, pageToLoad: nextPage)
         }
     }
+    
+    func showMovieDetail(_ movie: Movie) {
+        // save to recent search
+        let searchItem = SearchItem(search: movie.title)
+        realmSearchStore.saveItem(searchItem)
+        
+        performSegue(withIdentifier: Constants.SegueIdentifiers.movieDetailSegue, sender: movie)
+    }
+}
+
+// MARK: - <#SearchTableDelegate#>
+extension MovieSearchViewController: SearchTableDelegate {
+    func recentItemSelected(_ text: String) {
+        searchBarMovies.text = text
+        loadItems(text)
+    }
 }
 
 // MARK: - <#UISearchBarDelegate#>
 extension MovieSearchViewController: UISearchBarDelegate {
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         searchBarMovies.cancelShown()
-        tableViewMovies.dataSource = recentSearchTableViewDatasource
-        tableViewMovies.reloadData()
+        
+        if searchBar.text!.count == 0 {
+            showRecentSearchDatasource()
+        }
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        loadItems(searchText)
+        if searchText == "" {
+            showRecentSearchDatasource()
+            return
+        }
+        if activityIndicator == nil {
+            activityIndicator = view.showActivityIndicatory()
+        }
+        
+        throttler.throttle {
+            self.loadItems(searchText)
+        }
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBarMovies.cancelHidden()
         searchBarMovies.resignFirstResponder()
-        
     }
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
@@ -102,6 +156,12 @@ extension MovieSearchViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
        searchBarMovies.resignFirstResponder()
+        loadItems(searchBarMovies.text!) {
+            if let count = self.moviesResponse?.movies?.count, count > 0 {
+                let searchItem = SearchItem(search: searchBar.text!)
+                self.realmSearchStore.saveItem(searchItem)
+            }
+        }
     }
 }
 

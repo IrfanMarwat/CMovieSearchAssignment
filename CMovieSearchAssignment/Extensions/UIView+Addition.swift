@@ -30,9 +30,10 @@ extension UIView {
         actInd.center = center
         actInd.hidesWhenStopped = true
         actInd.activityIndicatorViewStyle =
-            UIActivityIndicatorViewStyle.white
+            UIActivityIndicatorViewStyle.gray
         addSubview(actInd)
         actInd.startAnimating()
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
         return actInd
     }
@@ -40,5 +41,6 @@ extension UIView {
     func hideActivityIndicator() {
         let activityIndictor = self as? UIActivityIndicatorView
         activityIndictor?.stopAnimating()
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
     }
 }

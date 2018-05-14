@@ -8,15 +8,26 @@
 
 import UIKit
 
+protocol SearchTableDelegate: class {
+    func recentItemSelected(_ text: String)
+}
+
 class RecentSearchesTableViewDatasource: NSObject {
+    var store: SearchItemDataStore!
     var datasource: [SearchItem] = []
+    weak var delegate: SearchTableDelegate? = nil
     
-    init(_ recentSearches: [SearchItem]? = nil) {
+    init(_ realmStore: SearchItemDataStore, delegate: SearchTableDelegate) {
         super.init()
         
-        if let recentSearches = recentSearches {
-            datasource = recentSearches
-        }
+        store = realmStore
+        self.delegate = delegate
+        datasource = store.tenRecentItems
+    }
+    
+    func updatedStore(_ realmStore: SearchItemDataStore) {
+        store = realmStore
+        datasource = store.tenRecentItems
     }
 }
 
@@ -27,14 +38,16 @@ extension RecentSearchesTableViewDatasource: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "recentSearchCell")
-        cell?.accessoryType = .disclosureIndicator
-        cell?.backgroundColor = UIColor.groupTableViewBackground
-        let item = datasource[indexPath.row]
-        cell?.textLabel?.textColor = .black
-        cell?.textLabel?.text = item.searchText
+        let cell = tableView.dequeueReusableCell(withIdentifier: "recentSearchCell")!
         
-        return cell!
+        cell.accessoryType = .disclosureIndicator
+        cell.backgroundColor = UIColor.groupTableViewBackground
+        cell.textLabel?.textColor = .black
+        
+        let item = datasource[indexPath.row]
+        cell.textLabel?.text = item.searchText
+        
+        return cell
     }
     
 }
@@ -42,7 +55,14 @@ extension RecentSearchesTableViewDatasource: UITableViewDataSource {
 // MARK: - <#UITableViewDelegate#>
 extension RecentSearchesTableViewDatasource: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+//        if indexPath.row == 0 {
+//            store.clearStore()
+//            datasource = []
+//            tableView.reloadData()
+//            return
+//        }
+        let item = datasource[indexPath.row]
+        delegate?.recentItemSelected(item.searchText)
     }
 }
 

@@ -53,16 +53,6 @@ extension NetworkApiManager {
         
         print("URL -->%@",string)
         
-        do {
-            let jsonData = try JSONSerialization.data(withJSONObject: configuration.parameters ?? [String:AnyObject](), options: .prettyPrinted)
-            
-            print("REQUEST -->%@",NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String )
-            
-        } catch {
-            print(error.localizedDescription)
-        }
-        
-        
         sessionManager.request(configuration).validate().responseJSON { jsonResp in
             guard jsonResp.result.error == nil else {
                 completion(.none, NetworkError.customError(jsonResp.result.error!.localizedDescription))

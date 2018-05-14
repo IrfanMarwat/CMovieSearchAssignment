@@ -17,51 +17,50 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="movieCell" rowHeight="175" id="hUd-gL-Aaw" customClass="MovieTableViewCell" customModule="CMovieSearchAssignment" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="394" height="175"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="movieCell" rowHeight="163" id="hUd-gL-Aaw" customClass="MovieTableViewCell" customModule="CMovieSearchAssignment" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="706" height="163"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hUd-gL-Aaw" id="7pL-j6-slP">
-                <rect key="frame" x="0.0" y="0.0" width="356" height="174.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="668" height="162.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Ii-Yp-vNr">
-                        <rect key="frame" x="0.0" y="0.0" width="356" height="174.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="668" height="162.5"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="test" translatesAutoresizingMaskIntoConstraints="NO" id="gTO-fu-LTF">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="picture-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="gTO-fu-LTF">
                                 <rect key="frame" x="8" y="8" width="100" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="gTO-fu-LTF" secondAttribute="height" multiplier="1:1" id="D4a-48-Rhd"/>
                                     <constraint firstAttribute="height" constant="100" id="gsg-p6-4sk"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0l3-lH-27G">
-                                <rect key="frame" x="116" y="8" width="240" height="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Movie Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0l3-lH-27G">
+                                <rect key="frame" x="116" y="8" width="552" height="17"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Release Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cuv-iF-VLQ">
-                                <rect key="frame" x="8" y="116" width="100" height="17"/>
+                                <rect key="frame" x="8" y="116" width="89" height="17"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Or9-sP-9On">
-                                <rect key="frame" x="8" y="133" width="100" height="17"/>
+                                <rect key="frame" x="8" y="133" width="89" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="17" id="gkY-nx-vnl"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tFt-CJ-jdJ">
-                                <rect key="frame" x="116" y="33" width="240" height="137.5"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="150" id="PtC-66-eda"/>
-                                </constraints>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut </string>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="8" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="36p-us-MHZ">
+                                <rect key="frame" x="116" y="33" width="552" height="16.5"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -69,19 +68,18 @@
                             <constraint firstItem="gTO-fu-LTF" firstAttribute="leading" secondItem="7Ii-Yp-vNr" secondAttribute="leading" constant="8" id="4mD-87-n7X"/>
                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="gTO-fu-LTF" secondAttribute="bottom" constant="8" id="7hW-4z-pj6"/>
                             <constraint firstItem="gTO-fu-LTF" firstAttribute="top" secondItem="7Ii-Yp-vNr" secondAttribute="top" constant="8" id="9Hn-vs-sCi"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="36p-us-MHZ" secondAttribute="bottom" constant="8" id="C7H-gG-TOT"/>
                             <constraint firstItem="Cuv-iF-VLQ" firstAttribute="top" secondItem="gTO-fu-LTF" secondAttribute="bottom" constant="8" id="Dez-OE-uMH"/>
                             <constraint firstItem="0l3-lH-27G" firstAttribute="top" secondItem="7Ii-Yp-vNr" secondAttribute="top" constant="8" id="Dqh-he-mA7"/>
-                            <constraint firstAttribute="bottom" secondItem="tFt-CJ-jdJ" secondAttribute="bottom" constant="4" id="HYu-wQ-Q01"/>
-                            <constraint firstAttribute="bottom" secondItem="Or9-sP-9On" secondAttribute="bottom" constant="24.5" id="Kvw-EA-iBZ"/>
+                            <constraint firstItem="36p-us-MHZ" firstAttribute="leading" secondItem="0l3-lH-27G" secondAttribute="leading" id="EKE-no-K9I"/>
                             <constraint firstAttribute="trailing" secondItem="0l3-lH-27G" secondAttribute="trailing" id="PmL-Ze-mUX"/>
+                            <constraint firstItem="36p-us-MHZ" firstAttribute="trailing" secondItem="0l3-lH-27G" secondAttribute="trailing" id="RW3-nE-qFz"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Or9-sP-9On" secondAttribute="bottom" constant="8" id="grP-V2-Wut"/>
                             <constraint firstItem="Or9-sP-9On" firstAttribute="top" secondItem="Cuv-iF-VLQ" secondAttribute="bottom" id="jYC-sW-gmL"/>
                             <constraint firstItem="Or9-sP-9On" firstAttribute="leading" secondItem="Cuv-iF-VLQ" secondAttribute="leading" id="m3k-4p-ykw"/>
                             <constraint firstItem="Cuv-iF-VLQ" firstAttribute="leading" secondItem="gTO-fu-LTF" secondAttribute="leading" id="rUc-Q7-2fo"/>
-                            <constraint firstItem="tFt-CJ-jdJ" firstAttribute="leading" secondItem="Cuv-iF-VLQ" secondAttribute="trailing" constant="8" id="sXb-eQ-XW9"/>
-                            <constraint firstItem="tFt-CJ-jdJ" firstAttribute="trailing" secondItem="0l3-lH-27G" secondAttribute="trailing" id="uKV-cb-acd"/>
-                            <constraint firstItem="tFt-CJ-jdJ" firstAttribute="top" secondItem="0l3-lH-27G" secondAttribute="bottom" constant="8" id="uzf-RY-8ek"/>
+                            <constraint firstItem="36p-us-MHZ" firstAttribute="top" secondItem="0l3-lH-27G" secondAttribute="bottom" constant="8" id="vKu-1i-cPl"/>
                             <constraint firstItem="Or9-sP-9On" firstAttribute="trailing" secondItem="Cuv-iF-VLQ" secondAttribute="trailing" id="wcg-Iz-p7l"/>
-                            <constraint firstItem="tFt-CJ-jdJ" firstAttribute="leading" secondItem="0l3-lH-27G" secondAttribute="leading" id="woL-7c-ChK"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -96,12 +94,12 @@
                 <outlet property="imageViewMovie" destination="gTO-fu-LTF" id="4qe-mG-Aqr"/>
                 <outlet property="labelMovieName" destination="0l3-lH-27G" id="ekb-8j-9Xr"/>
                 <outlet property="labelMovieReleaseDate" destination="Or9-sP-9On" id="lEP-yN-1Bp"/>
-                <outlet property="labelMovieReview" destination="tFt-CJ-jdJ" id="abm-FH-t0b"/>
+                <outlet property="labelMovieReview" destination="36p-us-MHZ" id="aCV-un-IX1"/>
             </connections>
-            <point key="canvasLocation" x="1" y="-751.5"/>
+            <point key="canvasLocation" x="157" y="-757.5"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="test" width="500" height="750"/>
+        <image name="picture-placeholder" width="140" height="140"/>
     </resources>
 </document>

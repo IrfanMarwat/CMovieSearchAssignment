@@ -7,8 +7,19 @@
 //
 
 import Foundation
+import RealmSwift
 
-struct SearchItem {
-    var searchText: String = ""
-    var searchedDate: Date = Date()
+class SearchItem: Object {
+    @objc dynamic var searchText: String = ""
+    @objc dynamic var searchedDate: Date = Date()
+    
+    convenience init(search: String) {
+        self.init()
+        searchText = search
+        searchedDate = Date()
+    }
+    
+    override class func primaryKey() -> String {
+        return "searchText"
+    }
 }
