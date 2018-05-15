@@ -1,0 +1,6 @@
+framework module Pods_CMovieSearchAssignmentTests {
+  umbrella header "Pods-CMovieSearchAssignmentTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

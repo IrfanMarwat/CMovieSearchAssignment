@@ -12,14 +12,35 @@ class MovieTableViewCell: UITableViewCell {
 
     @IBOutlet weak var imageViewMovie: UIImageView!
     @IBOutlet weak var labelMovieName: UILabel!
-    @IBOutlet weak var labelMovieReleaseDate: UILabel!
-    @IBOutlet weak var labelMovieReview: UITextView!
+    @IBOutlet weak var labelMovieReview: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
     }
 
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        imageViewMovie.image = #imageLiteral(resourceName: "movie_thumbnail_placeholder")
+        labelMovieName.text = ""
+        labelMovieReview.text = ""
+        
+    }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+    }
+    
+    func configureWith(_ movie: Movie) {
+        if let image = movie.movieImage {
+            imageViewMovie.image = image
+        } else {
+            if let imageName = movie.posterPath?.replacingOccurrences(of: "'\'", with: "") {
+                let imageFullPath = Constants.BASE_URL_IMAGE + Constants.thumbnailSize + imageName
+                imageViewMovie.downloadImage(imageFullPath) { (success) in}
+            }
+
+        }
+        labelMovieName.text = movie.title + " (\(movie.releaseDate))"
+        labelMovieReview.text = movie.overview
     }
 }
