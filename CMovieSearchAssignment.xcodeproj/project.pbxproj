@@ -190,13 +190,6 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		934D9A1E20A5A0050042EFB0 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Protocols;
-			sourceTree = "<group>";
-		};
 		934D9A1F20A5A00E0042EFB0 /* Stores */ = {
 			isa = PBXGroup;
 			children = (
@@ -264,7 +257,6 @@
 				93462E9B20A6AFE4006F7A3A /* Network */,
 				93462E9620A6A882006F7A3A /* Router */,
 				934D9A2620A5A2310042EFB0 /* Models */,
-				934D9A1E20A5A0050042EFB0 /* Protocols */,
 				934D9A2320A5A1580042EFB0 /* Datasources */,
 				934D9A1F20A5A00E0042EFB0 /* Stores */,
 				934D9A2020A5A0260042EFB0 /* Extensions */,

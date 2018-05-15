@@ -11,7 +11,7 @@ import Foundation
 import Foundation
 import Alamofire
 
-public typealias JSONDictionary = [String: AnyObject]
+public typealias JSONDictionary = [String: Any]
 typealias APIParams = [String : Any]?
 
 protocol BaseURL {

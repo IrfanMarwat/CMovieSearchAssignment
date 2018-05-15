@@ -40,7 +40,12 @@ class MovieTableViewCell: UITableViewCell {
             }
 
         }
-        labelMovieName.text = movie.title + " (\(movie.releaseDate))"
+        if movie.releaseDate.count > 0 {
+            labelMovieName.text = movie.title + " (\(movie.releaseDate))"
+        } else {
+            labelMovieName.text = movie.title
+        }
+        
         labelMovieReview.text = movie.overview
     }
 }

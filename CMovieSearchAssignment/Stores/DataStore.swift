@@ -9,6 +9,10 @@
 import Foundation
 import RealmSwift
 
+/*
+    Any type confirming to SearchItemDataStore is responsible for saving recent searches, clearing and getting those searches. RealmSearchStore confirm to this protocol. MovieSearchViewController is using this class.
+ */
+
 protocol SearchItemDataStore {
     func saveItem(_ searchItem: SearchItem)
     var tenRecentItems: [SearchItem] {get}

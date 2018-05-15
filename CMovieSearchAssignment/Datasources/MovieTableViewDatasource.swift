@@ -8,6 +8,11 @@
 
 import UIKit
 
+/*
+    MovieVcDelegate is confirmed by MovieSearchViewController.
+    MovieTableViewDatasource class has UITableview datasources and delegates methods, for listing movies. Prefetch is also implemented by this. The update function will replace all items for first page, and append items for other pages.
+ */
+
 protocol MovieVcDelegate: class {
     func loadMoreItems()
     var shouldDownloadMore: Bool {get}
@@ -65,6 +70,7 @@ extension MovieTableViewDatasource: UITableViewDelegate {
     }
 }
 
+// MARK: - <#UITableViewDataSourcePrefetching#>
 extension MovieTableViewDatasource: UITableViewDataSourcePrefetching {
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         indexPaths.forEach{self.downloadImage($0.row)}

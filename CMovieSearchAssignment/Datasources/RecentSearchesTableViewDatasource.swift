@@ -8,6 +8,10 @@
 
 import UIKit
 
+/*
+    UITableview datasource that is assigned to TableView in MovieSearchViewController. When user focus in searchbar this datasource is assigned and tableview is reloaded. This show recent 10 searches. Pressing on item will replace tableview datasource with MovieDatasouce for movie listing.
+ */
+
 protocol SearchTableDelegate: class {
     func recentItemSelected(_ text: String)
 }

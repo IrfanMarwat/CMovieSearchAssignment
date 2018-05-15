@@ -6,6 +6,9 @@
 //  Copyright © 2018 Irfan. All rights reserved.
 //
 
+/*
+    Main class for showing movie list. This class contain a store object for recent saved items, recent search datasource and movie datasource. TableView is assigned one of the two datasources depends on user activity.
+*/
 import UIKit
 import NotificationBannerSwift
 
@@ -28,7 +31,7 @@ class MovieSearchViewController: UIViewController {
         super.viewDidLoad()
         
         realmSearchStore = RealmSearchStore()
-        registerForPreviewing(with: self, sourceView: tableViewMovies)
+        registerForPreviewing(with: self, sourceView: tableViewMovies) // Previewing delegates are implemented in Separate extension (MovieSearchViewController+PeekAndPop)
         
         tableViewMovies.tableFooterView = UIView(frame: .zero)
         searchBarMovies.becomeFirstResponder()
