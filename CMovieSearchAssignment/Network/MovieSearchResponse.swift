@@ -50,11 +50,11 @@ struct MovieSearchResponse: Decodable {
             let jsonDecoder = JSONDecoder()
             let decodedResponse = try? jsonDecoder.decode(MovieSearchResponse.self, from: data!)
             
-            guard decodedResponse != nil else {
-                return completion(NetworkError.customError("Data not found"), nil)
+            if let decodedResponse = decodedResponse, decodedResponse.totalResults ?? 0 > 0 {
+                completion(nil, decodedResponse)
+            } else {
+                completion(NetworkError.customError("Data not found"), nil)
             }
-            
-            completion(nil, decodedResponse)
         }
     }
 }

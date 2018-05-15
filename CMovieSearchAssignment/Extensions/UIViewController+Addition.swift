@@ -14,7 +14,7 @@ typealias AlertCompletionHandler =  ((_ completed: Bool) -> Void)?
 
 extension UIViewController {
     
-    func showAlertWithTitle( title:String?, message:String, okButtonTitle: String = "Ok", cancelButtonTitle: String?, response : AlertCompletionHandler = .none) {
+    func showAlert(title:String? = nil, message:String, okButtonTitle: String = "Ok", cancelButtonTitle: String? = nil, response : AlertCompletionHandler = .none) {
         
         let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
@@ -33,15 +33,17 @@ extension UIViewController {
         })
         
         alertController.addAction(ok)
-        
-        let cancel = UIAlertAction(title: cancelButtonTitle , style: .cancel, handler: {(cancel) in
-            alertController.dismiss(animated: true, completion: nil)
-            if let cancelResponse = response {
-                cancelResponse(true)
-            }
-        })
-        
-        alertController.addAction(cancel)
+
+        if cancelButtonTitle != nil  {
+            let cancel = UIAlertAction(title: cancelButtonTitle , style: .cancel, handler: {(cancel) in
+                alertController.dismiss(animated: true, completion: nil)
+                if let cancelResponse = response {
+                    cancelResponse(true)
+                }
+            })
+            
+            alertController.addAction(cancel)
+        }
         
         DispatchQueue.main.async {
             self.present(alertVC, animated: true, completion: nil)

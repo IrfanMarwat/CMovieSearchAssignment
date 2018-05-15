@@ -13,53 +13,5 @@
             stopOnStyle = "0">
          </BreakpointContent>
       </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CMovieSearchAssignment/Network/NetworkApiManager.swift"
-            timestampString = "548020765.896727"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
-            landmarkName = "requestData(configuration:showAlert:completion:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CMovieSearchAssignment.NetworkApiManager.requestData(configuration: CMovieSearchAssignment.APIConfiguration, showAlert: Swift.Bool, completion: (Swift.Optional&lt;Any&gt;, Swift.Optional&lt;CMovieSearchAssignment.NetworkError&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "CMovieSearchAssignment"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mac-ios/CMovieSearchAssignment/CMovieSearchAssignment/Network/NetworkApiManager.swift"
-                  timestampString = "548046355.040091"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "54"
-                  endingLineNumber = "54"
-                  offsetFromSymbolStart = "84">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CMovieSearchAssignmentTests.NetworkApiManager.requestData(configuration: CMovieSearchAssignmentTests.APIConfiguration, showAlert: Swift.Bool, completion: (Swift.Optional&lt;Any&gt;, Swift.Optional&lt;CMovieSearchAssignmentTests.NetworkError&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "CMovieSearchAssignmentTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mac-ios/CMovieSearchAssignment/CMovieSearchAssignment/Network/NetworkApiManager.swift"
-                  timestampString = "548046356.964489"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "54"
-                  endingLineNumber = "54"
-                  offsetFromSymbolStart = "84">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

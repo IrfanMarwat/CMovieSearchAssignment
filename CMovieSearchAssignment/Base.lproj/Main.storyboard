@@ -98,6 +98,35 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="uW4-bl-1IZ">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recent Searches" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gyN-vV-AxV">
+                            <rect key="frame" x="16" y="13" width="107" height="17"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y0E-6y-b4t">
+                            <rect key="frame" x="311" y="0.0" width="40" height="43"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="12"/>
+                            <state key="normal" title="CLEAR">
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="2sI-un-TKk" firstAttribute="trailing" secondItem="Y0E-6y-b4t" secondAttribute="trailing" constant="24" id="BsC-64-o02"/>
+                        <constraint firstItem="Y0E-6y-b4t" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="uW4-bl-1IZ" secondAttribute="leading" constant="20" symbolic="YES" id="Dwk-bR-bXa"/>
+                        <constraint firstItem="2sI-un-TKk" firstAttribute="bottom" secondItem="Y0E-6y-b4t" secondAttribute="bottom" id="SOb-Vl-8ij"/>
+                        <constraint firstItem="gyN-vV-AxV" firstAttribute="leading" secondItem="2sI-un-TKk" secondAttribute="leading" constant="16" id="TT2-aQ-IJn"/>
+                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="gyN-vV-AxV" secondAttribute="trailing" constant="20" symbolic="YES" id="ea7-Es-0RK"/>
+                        <constraint firstItem="Y0E-6y-b4t" firstAttribute="top" secondItem="2sI-un-TKk" secondAttribute="top" id="lnk-5q-Uve"/>
+                        <constraint firstItem="gyN-vV-AxV" firstAttribute="centerY" secondItem="uW4-bl-1IZ" secondAttribute="centerY" id="oMq-cb-mHy"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="2sI-un-TKk"/>
+                </view>
             </objects>
             <point key="canvasLocation" x="274" y="14"/>
         </scene>
@@ -112,12 +141,12 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dSL-gP-nOB">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="picture-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="QA2-zI-CKJ">
-                                        <rect key="frame" x="8" y="8" width="359" height="175"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="movie_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="QA2-zI-CKJ">
+                                        <rect key="frame" x="8" y="8" width="359" height="171"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FULL REVIEW" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EJt-95-VCi">
-                                        <rect key="frame" x="8" y="199" width="359" height="20"/>
+                                        <rect key="frame" x="8" y="195" width="359" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="kC2-sl-ABd"/>
                                         </constraints>
@@ -126,7 +155,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Idu-xI-Q71">
-                                        <rect key="frame" x="8" y="235" width="359" height="16.5"/>
+                                        <rect key="frame" x="8" y="231" width="359" height="16.5"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -167,6 +196,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="picture-placeholder" width="191" height="175"/>
+        <image name="movie_placeholder" width="171" height="171"/>
     </resources>
 </document>

@@ -34,6 +34,7 @@
 		93462EA520A6E2E1006F7A3A /* UIImageView+ImageDownload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93462EA420A6E2E1006F7A3A /* UIImageView+ImageDownload.swift */; };
 		93462EA720A73341006F7A3A /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93462EA620A73341006F7A3A /* DataStore.swift */; };
 		93462EA920A77560006F7A3A /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93462EA820A77560006F7A3A /* MovieDetailViewController.swift */; };
+		93474A4D20AADD7A00026F75 /* MovieSearchViewController+PeekAndPop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93474A4C20AADD7A00026F75 /* MovieSearchViewController+PeekAndPop.swift */; };
 		934D9A1A20A59FCA0042EFB0 /* MovieSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934D9A1920A59FCA0042EFB0 /* MovieSearchViewController.swift */; };
 		934D9A1D20A59FFA0042EFB0 /* MovieTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 934D9A1C20A59FFA0042EFB0 /* MovieTableViewCell.xib */; };
 		934D9A2220A5A05B0042EFB0 /* MovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934D9A2120A5A05B0042EFB0 /* MovieTableViewCell.swift */; };
@@ -85,6 +86,7 @@
 		93462EA420A6E2E1006F7A3A /* UIImageView+ImageDownload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+ImageDownload.swift"; sourceTree = "<group>"; };
 		93462EA620A73341006F7A3A /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		93462EA820A77560006F7A3A /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
+		93474A4C20AADD7A00026F75 /* MovieSearchViewController+PeekAndPop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieSearchViewController+PeekAndPop.swift"; sourceTree = "<group>"; };
 		934D9A1920A59FCA0042EFB0 /* MovieSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieSearchViewController.swift; sourceTree = "<group>"; };
 		934D9A1C20A59FFA0042EFB0 /* MovieTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MovieTableViewCell.xib; sourceTree = "<group>"; };
 		934D9A2120A5A05B0042EFB0 /* MovieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 				93462EA220A6D47B006F7A3A /* UIViewController+Addition.swift */,
 				93462EA420A6E2E1006F7A3A /* UIImageView+ImageDownload.swift */,
 				93387B0820A899D300027632 /* UIImage+Resizing.swift */,
+				93474A4C20AADD7A00026F75 /* MovieSearchViewController+PeekAndPop.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -482,6 +485,7 @@
 				93462EA920A77560006F7A3A /* MovieDetailViewController.swift in Sources */,
 				93462EA120A6CCE7006F7A3A /* MovieSearchResponse.swift in Sources */,
 				93462EA520A6E2E1006F7A3A /* UIImageView+ImageDownload.swift in Sources */,
+				93474A4D20AADD7A00026F75 /* MovieSearchViewController+PeekAndPop.swift in Sources */,
 				93462E9D20A6B007006F7A3A /* NetworkApiManager.swift in Sources */,
 				93462EA320A6D47B006F7A3A /* UIViewController+Addition.swift in Sources */,
 				93462E9F20A6B01A006F7A3A /* NetworkImageDownloader.swift in Sources */,

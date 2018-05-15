@@ -35,6 +35,10 @@ class MovieDetailViewController: UIViewController {
         navigationController?.isNavigationBarHidden = true
     }
     
+    deinit {
+        print("thanks")
+    }
+    
     func setUpUI() {
         if let imageName = movie.posterPath?.replacingOccurrences(of: "'\'", with: "") {
             let imageFullPath = Constants.BASE_URL_IMAGE + Constants.orignalImage + imageName

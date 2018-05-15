@@ -12,7 +12,6 @@ class MovieTableViewCell: UITableViewCell {
 
     @IBOutlet weak var imageViewMovie: UIImageView!
     @IBOutlet weak var labelMovieName: UILabel!
-    @IBOutlet weak var labelMovieReleaseDate: UILabel!
     @IBOutlet weak var labelMovieReview: UILabel!
     
     override func awakeFromNib() {
@@ -22,9 +21,8 @@ class MovieTableViewCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         
-        imageViewMovie.image = nil
+        imageViewMovie.image = #imageLiteral(resourceName: "movie_thumbnail_placeholder")
         labelMovieName.text = ""
-        labelMovieReleaseDate.text = ""
         labelMovieReview.text = ""
         
     }
@@ -42,8 +40,7 @@ class MovieTableViewCell: UITableViewCell {
             }
 
         }
-        labelMovieName.text = movie.title
-        labelMovieReleaseDate.text = movie.releaseDate
+        labelMovieName.text = movie.title + " (\(movie.releaseDate))"
         labelMovieReview.text = movie.overview
     }
 }

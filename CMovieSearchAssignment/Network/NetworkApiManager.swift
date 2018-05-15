@@ -48,15 +48,15 @@ extension NetworkApiManager {
     /// - Parameters:
     ///   - configuration: Request Type i.e Get/Post/Put.. , Path, Parameters
     ///   - completion: callback after receiving response
-    func requestData(configuration: APIConfiguration, showAlert: Bool = true ,completion: @escaping (_ response : Any?, _ error :NetworkError?) -> Void) {
+    func requestData(configuration: APIConfiguration ,completion: @escaping (_ response : Any?, _ error :NetworkError?) -> Void) {
         
-        if showAlert, !Reachability.isConnectedToNetwork() {
+        if !Reachability.isConnectedToNetwork() {
             return completion(nil, NetworkError.customError("No Internet Connection"))
         }
         
         let string = NSMutableString(format:"%@%@","",configuration.urlRequest?.url?.absoluteString ?? "")
         
-        print("URL -->%@",string)
+        print("URL --> \(string)")
         
         sessionManager.request(configuration).validate().responseJSON { jsonResp in
             guard jsonResp.result.error == nil else {

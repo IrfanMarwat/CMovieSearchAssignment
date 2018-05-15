@@ -27,12 +27,12 @@ class MovieTableViewDatasource: NSObject {
         delegateToMovieVc = delegate
     }
     
-    func update(_ newMovies: [Movie]) {
-        datasource = newMovies
-    }
-    
-    func addNextPageMovies(_ newMovies: [Movie]) {
-        datasource.append(contentsOf: newMovies)
+    func update(_ newMovies: [Movie], pageNumber: Int = 1) {
+        if pageNumber == 1 {
+            datasource = newMovies
+        } else {
+            datasource.append(contentsOf: newMovies)
+        }
     }
 }
 
@@ -71,6 +71,10 @@ extension MovieTableViewDatasource: UITableViewDataSourcePrefetching {
     }
     
     func downloadImage(_ index: Int) {
+        guard index < datasource.count else {
+            return
+        }
+        
         var movie = datasource[index]
         if let imageName = movie.posterPath?.replacingOccurrences(of: "'\'", with: "") {
             let imageFullPath = Constants.BASE_URL_IMAGE + Constants.thumbnailSize + imageName

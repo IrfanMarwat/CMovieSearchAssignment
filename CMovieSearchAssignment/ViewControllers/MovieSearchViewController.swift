@@ -28,6 +28,7 @@ class MovieSearchViewController: UIViewController {
         super.viewDidLoad()
         
         realmSearchStore = RealmSearchStore()
+        registerForPreviewing(with: self, sourceView: tableViewMovies)
         
         tableViewMovies.tableFooterView = UIView(frame: .zero)
         searchBarMovies.becomeFirstResponder()
@@ -40,10 +41,6 @@ class MovieSearchViewController: UIViewController {
         recentSearchTableViewDatasource = RecentSearchesTableViewDatasource(realmSearchStore, delegate: self)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == Constants.SegueIdentifiers.movieDetailSegue {
             let destinationVc = segue.destination as! MovieDetailViewController
@@ -62,20 +59,8 @@ class MovieSearchViewController: UIViewController {
                     banner.show()
                     return
                 }
-                
-                if let count = response?.movies?.count, count == 0 {
-                    let banner = StatusBarNotificationBanner(title: "No result found", style: .info)
-                    banner.show()
-                    return
-                }
-                
                 self.moviesResponse = response
-                if pageToLoad == 1 {
-                    self.movieTableViewDatasource.update(response?.movies ?? [])
-                } else {
-                    self.movieTableViewDatasource.addNextPageMovies(response?.movies ?? [])
-                }
-                
+                self.movieTableViewDatasource.update(response?.movies ?? [], pageNumber: pageToLoad)
                 self.showMovieDatasource()
                 self.nextResponseCompleted = true
                 completion?()
@@ -93,6 +78,9 @@ class MovieSearchViewController: UIViewController {
     }
     
     func showRecentSearchDatasource() {
+        if #available(iOS 10.0, *) {
+            tableViewMovies.prefetchDataSource = nil
+        }
         recentSearchTableViewDatasource.updatedStore(realmSearchStore)
         tableViewMovies.dataSource = recentSearchTableViewDatasource
         tableViewMovies.delegate = recentSearchTableViewDatasource
@@ -102,12 +90,12 @@ class MovieSearchViewController: UIViewController {
 
 // MARK: - <#MovieVcDelegate#>
 extension MovieSearchViewController: MovieVcDelegate {
+
     var shouldDownloadMore: Bool {
         let bottomReached = tableViewMovies.contentOffset.y >= (tableViewMovies.contentSize.height - tableViewMovies.frame.size.height)
         
         return bottomReached && nextResponseCompleted
     }
-    
     
     func loadMoreItems() {
         nextResponseCompleted = false
@@ -151,7 +139,6 @@ extension MovieSearchViewController: UISearchBarDelegate {
         if activityIndicator == nil {
             activityIndicator = view.showActivityIndicatory()
         }
-        
         throttler.throttle {
             self.loadItems(searchText)
         }
@@ -168,10 +155,12 @@ extension MovieSearchViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
        searchBarMovies.resignFirstResponder()
-        loadItems(searchBarMovies.text!) {
-            if let count = self.moviesResponse?.movies?.count, count > 0 {
-                let searchItem = SearchItem(search: searchBar.text!)
-                self.realmSearchStore.saveItem(searchItem)
+        if searchBar.text!.count > 0 {
+            loadItems(searchBarMovies.text!) {
+                if let count = self.moviesResponse?.movies?.count, count > 0 {
+                    let searchItem = SearchItem(search: searchBar.text!)
+                    self.realmSearchStore.saveItem(searchItem)
+                }
             }
         }
     }

@@ -12,11 +12,12 @@ class ThrottleTests: XCTestCase {
     
     var throttler: Throttler! // System under test
     var taskCalledCount = 0
+    var delay = 0.5
 
     override func setUp() {
         super.setUp()
 
-        throttler = Throttler(seconds: 0.5)
+        throttler = Throttler(seconds: delay)
     }
 
     func testIfTaskExecuteOnlyOnceInGivenTime() {
@@ -33,7 +34,7 @@ class ThrottleTests: XCTestCase {
         }
         
         waitForExpectations(timeout: 1.0, handler: nil)
-        XCTAssert(taskCalledCount == 1, "mockTask should be called once in given delay 0.5")
+        XCTAssert(taskCalledCount == 1, "mockTask should be called once in given delay \(delay)")
     }
     
     override func tearDown() {
