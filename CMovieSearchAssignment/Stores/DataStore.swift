@@ -11,22 +11,31 @@ import RealmSwift
 
 protocol SearchItemDataStore {
     func saveItem(_ searchItem: SearchItem)
-    func deleteItem(_ searchItem: SearchItem)
-    func clearStore()
     var tenRecentItems: [SearchItem] {get}
+    func deleteItem(_ searchItem: SearchItem)
+    var allItems: [SearchItem] {get}
+    func clearStore()
 }
 
 struct RealmSearchStore: SearchItemDataStore {
     
+    var configuration = Realm.Configuration()
+    
+    init(_ configuration: Realm.Configuration? = nil) {
+        if configuration != nil {
+            self.configuration = configuration!
+        }
+    }
+    
     func saveItem(_ searchItem: SearchItem) {
-        let realm = try! Realm()
+        let realm = try! Realm(configuration: configuration)
         try! realm.write {
             realm.add(searchItem, update: true)
         }
     }
     
-    private var allItems: [SearchItem] {
-        let realm = try! Realm()
+    var allItems: [SearchItem] {
+        let realm = try! Realm(configuration: configuration)
         let results = realm.objects(SearchItem.self)
         let listOfCartItems = results.reduce(List<SearchItem>()) { (list, element) -> List<SearchItem> in
             list.append(element)
@@ -51,7 +60,7 @@ struct RealmSearchStore: SearchItemDataStore {
     }
     
     func clearStore() {
-        let realm = try! Realm()
+        let realm = try! Realm(configuration: configuration)
         try! realm.write {
             let allObjects = realm.objects(SearchItem.self)
             realm.delete(allObjects)

@@ -41,26 +41,20 @@ extension RecentSearchesTableViewDatasource: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "recentSearchCell")!
         
         cell.accessoryType = .disclosureIndicator
-        cell.backgroundColor = UIColor.groupTableViewBackground
+        cell.backgroundColor = UIColor.white
         cell.textLabel?.textColor = .black
         
         let item = datasource[indexPath.row]
         cell.textLabel?.text = item.searchText
+        cell.textLabel?.numberOfLines = 0
         
         return cell
     }
-    
 }
 
 // MARK: - <#UITableViewDelegate#>
 extension RecentSearchesTableViewDatasource: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        if indexPath.row == 0 {
-//            store.clearStore()
-//            datasource = []
-//            tableView.reloadData()
-//            return
-//        }
         let item = datasource[indexPath.row]
         delegate?.recentItemSelected(item.searchText)
     }

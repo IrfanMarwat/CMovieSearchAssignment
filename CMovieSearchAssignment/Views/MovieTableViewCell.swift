@@ -19,6 +19,15 @@ class MovieTableViewCell: UITableViewCell {
         super.awakeFromNib()
     }
 
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        imageViewMovie.image = nil
+        labelMovieName.text = ""
+        labelMovieReleaseDate.text = ""
+        labelMovieReview.text = ""
+        
+    }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }

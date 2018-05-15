@@ -16,32 +16,27 @@ class ThrottleTests: XCTestCase {
     override func setUp() {
         super.setUp()
 
-        throttler = Throttler(seconds: 1.0)
+        throttler = Throttler(seconds: 0.5)
     }
 
     func testIfTaskExecuteOnlyOnceInGivenTime() {
         let completeExpectaion = expectation(description: "Completed")
-        throttler.throttle {
-            mockTask()
+        for i in 1...10 {
+            throttler.throttle {
+                mockTask()
+            }
         }
-
+        
         func mockTask() {
             taskCalledCount = taskCalledCount + 1
             completeExpectaion.fulfill()
         }
         
-        waitForExpectations(timeout: 1.1, handler: nil)
-        XCTAssert(taskCalledCount == 1, "mockTask should be called once in given delay 1.0")
+        waitForExpectations(timeout: 1.0, handler: nil)
+        XCTAssert(taskCalledCount == 1, "mockTask should be called once in given delay 0.5")
     }
     
     override func tearDown() {
         super.tearDown()
     }
-    
-    
-    func testPerformanceExample() {
-        self.measure {
-        }
-    }
-    
 }

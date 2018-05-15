@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import NotificationBannerSwift
 
 class MovieSearchViewController: UIViewController {
-
+    
     @IBOutlet weak var searchBarMovies: AppSearchBar!
     @IBOutlet weak var tableViewMovies: UITableView!
+    
     var nextResponseCompleted: Bool = false
     var activityIndicator: UIActivityIndicatorView?
     
@@ -56,6 +58,14 @@ class MovieSearchViewController: UIViewController {
                 self.activityIndicator = nil
                 
                 guard error == nil else {
+                    let banner = StatusBarNotificationBanner(title: error!.errorDescription, style: .warning)
+                    banner.show()
+                    return
+                }
+                
+                if let count = response?.movies?.count, count == 0 {
+                    let banner = StatusBarNotificationBanner(title: "No result found", style: .info)
+                    banner.show()
                     return
                 }
                 
@@ -76,7 +86,9 @@ class MovieSearchViewController: UIViewController {
     func showMovieDatasource() {
         tableViewMovies.dataSource = movieTableViewDatasource
         tableViewMovies.delegate = movieTableViewDatasource
-        tableViewMovies.prefetchDataSource = movieTableViewDatasource
+        if #available(iOS 10.0, *) {
+            tableViewMovies.prefetchDataSource = movieTableViewDatasource
+        }
         tableViewMovies.reloadData()
     }
     

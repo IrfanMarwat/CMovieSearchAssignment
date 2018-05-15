@@ -29,7 +29,7 @@ struct MovieSearchResponse: Decodable {
         case page = "page", totalResults = "total_results", totalPages = "total_pages", movies = "results"
     }
     
-    static func searchWith(_ searchText: String, pageNumber: Int = 1, completion: @escaping (_ error: Error?, _ reponse: MovieSearchResponse?)->()) {
+    static func searchWith(_ searchText: String, pageNumber: Int = 1, completion: @escaping (_ error: NetworkError?, _ reponse: MovieSearchResponse?)->()) {
         let router = MovieRouter(endpoint: .searchMovie(searchText: searchText, pageNumber: pageNumber))
         NetworkApiManager.shared.requestData(configuration: router) { (result, error) in
             

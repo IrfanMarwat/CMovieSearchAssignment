@@ -8,12 +8,13 @@
 
 import Foundation
 import Alamofire
+import NotificationBannerSwift
 
 enum NetworkError : Error {
     
     case customError(String)
     
-    var localizedDescription: String {
+    var errorDescription: String {
         switch self {
         case .customError(let error):
             return error
@@ -47,7 +48,11 @@ extension NetworkApiManager {
     /// - Parameters:
     ///   - configuration: Request Type i.e Get/Post/Put.. , Path, Parameters
     ///   - completion: callback after receiving response
-    func requestData(configuration: APIConfiguration, showLoader: Bool = true ,completion: @escaping (_ response : Any?, _ error :NetworkError?) -> Void) {
+    func requestData(configuration: APIConfiguration, showAlert: Bool = true ,completion: @escaping (_ response : Any?, _ error :NetworkError?) -> Void) {
+        
+        if showAlert, !Reachability.isConnectedToNetwork() {
+            return completion(nil, NetworkError.customError("No Internet Connection"))
+        }
         
         let string = NSMutableString(format:"%@%@","",configuration.urlRequest?.url?.absoluteString ?? "")
         

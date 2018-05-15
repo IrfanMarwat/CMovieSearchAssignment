@@ -10,6 +10,7 @@ target 'CMovieSearchAssignment' do
   pod 'Alamofire'
   pod 'AlamofireImage', '~> 3.3'
   pod 'RealmSwift'
+  pod 'NotificationBannerSwift'
 
   target 'CMovieSearchAssignmentTests' do
     inherit! :search_paths

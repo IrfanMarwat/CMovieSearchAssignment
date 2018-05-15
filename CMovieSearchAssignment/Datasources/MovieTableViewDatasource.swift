@@ -39,30 +39,15 @@ class MovieTableViewDatasource: NSObject {
 // MARK: - <#UITableViewDataSource#>
 extension MovieTableViewDatasource: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        if datasource.count == 0 {
-//            return 1 // No Result found cell.
-//        }
         return datasource.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        if datasource.count == 0 {
-//            let cell = tableView.dequeueReusableCell(withIdentifier: "recentSearchCell")!
-//            cell.accessoryType = .none
-//            cell.textLabel?.text = "No Result Found"
-//            return cell
-//        }
         let cell = tableView.dequeueReusableCell(withIdentifier: "movieCell", for: indexPath) as! MovieTableViewCell
         let movie = datasource[indexPath.row]
         cell.configureWith(movie)
         
         return cell
-    }
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if delegateToMovieVc?.shouldDownloadMore ?? false {
-            delegateToMovieVc?.loadMoreItems()
-        }
     }
 }
 
@@ -71,6 +56,12 @@ extension MovieTableViewDatasource: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
         delegateToMovieVc?.showMovieDetail(datasource[indexPath.row])
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if delegateToMovieVc?.shouldDownloadMore ?? false {
+            delegateToMovieVc?.loadMoreItems()
+        }
     }
 }
 
@@ -86,7 +77,9 @@ extension MovieTableViewDatasource: UITableViewDataSourcePrefetching {
             
             NetworkImageDownloader.shared.downlaodImageAtURLString(imageFullPath, withPlaceholder: "MovieDefault", imageIdentifier: "") { (image, success) in
                 movie.movieImage = image
-                self.datasource[index] = movie
+                if index < self.datasource.count {
+                    self.datasource[index] = movie
+                }
             }
         }
     }

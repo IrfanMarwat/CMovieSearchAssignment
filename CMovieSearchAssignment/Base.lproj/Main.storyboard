@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -84,44 +83,28 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Xgg-IZ-lhn" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="A0c-uh-8NL"/>
-                            <constraint firstItem="Xgg-IZ-lhn" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="EIe-Ov-0qo"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Xgg-IZ-lhn" secondAttribute="bottom" id="aKM-fo-fcc"/>
                             <constraint firstItem="Xgg-IZ-lhn" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="faQ-af-JtA"/>
+                            <constraint firstItem="Xgg-IZ-lhn" firstAttribute="top" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="top" priority="750" constant="16" id="rTI-F9-ZOQ"/>
+                            <constraint firstItem="Xgg-IZ-lhn" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="uln-6b-Ezr"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="1oZ-xI-J7h"/>
                     <connections>
                         <outlet property="searchBarMovies" destination="b5b-EG-T3h" id="70A-KM-hcp"/>
-                        <outlet property="searchDisplayController" destination="8JJ-1O-caN" id="jBy-qo-WHF"/>
                         <outlet property="tableViewMovies" destination="HV4-wG-6Kx" id="cl1-4B-iuJ"/>
                         <segue destination="r2K-JQ-jog" kind="show" identifier="segueToDetail" id="Ig6-7H-b1Y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="I6w-G2-D1A">
-                    <connections>
-                        <outlet property="delegate" destination="BYZ-38-t0r" id="bEa-gh-H1m"/>
-                        <outlet property="searchContentsController" destination="BYZ-38-t0r" id="0bA-mE-OZh"/>
-                        <outlet property="searchResultsDataSource" destination="BYZ-38-t0r" id="KCS-oM-UcQ"/>
-                        <outlet property="searchResultsDelegate" destination="BYZ-38-t0r" id="glg-T0-XoJ"/>
-                    </connections>
-                </searchDisplayController>
-                <searchDisplayController id="8JJ-1O-caN">
-                    <connections>
-                        <outlet property="delegate" destination="BYZ-38-t0r" id="BAq-Bq-Rfo"/>
-                        <outlet property="searchContentsController" destination="BYZ-38-t0r" id="diH-O8-9Zx"/>
-                        <outlet property="searchResultsDataSource" destination="BYZ-38-t0r" id="hvW-Zn-4JN"/>
-                        <outlet property="searchResultsDelegate" destination="BYZ-38-t0r" id="CPb-cb-Nqk"/>
-                    </connections>
-                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="274" y="14"/>
         </scene>
         <!--Movie Detail View Controller-->
         <scene sceneID="sEo-f4-Dq4">
             <objects>
-                <viewController storyboardIdentifier="MovieDetailViewController" id="r2K-JQ-jog" customClass="MovieDetailViewController" customModule="CMovieSearchAssignment" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MovieDetailViewController" automaticallyAdjustsScrollViewInsets="NO" id="r2K-JQ-jog" customClass="MovieDetailViewController" customModule="CMovieSearchAssignment" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ay8-rT-KHQ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
